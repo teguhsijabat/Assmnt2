@@ -42,4 +42,66 @@
 </body>
 </html>
 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pencarian Tim NHL</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function searchTeams() {
+            var searchQuery = document.getElementById("searchInput").value;
+            var url = "https://statsapi.web.nhl.com/api/v1/teams";
+            
+            $.ajax({
+                url: url,
+                type: "GET",
+                dataType: "json",
+                success: function(data) {
+                    var teams = data.teams;
+                    var results = [];
+
+                    for (var i = 0; i < teams.length; i++) {
+                        var team = teams[i];
+                        var teamName = team.name;
+
+                        if (teamName.toLowerCase().includes(searchQuery.toLowerCase())) {
+                            results.push(teamName);
+                        }
+                    }
+
+                    displayResults(results);
+                },
+                error: function(xhr, status, error) {
+                    console.log("Error: " + error);
+                }
+            });
+        }
+        
+        function displayResults(results) {
+            var resultList = document.getElementById("resultList");
+            resultList.innerHTML = "";
+
+            if (results.length === 0) {
+                var noResultItem = document.createElement("li");
+                noResultItem.textContent = "Tidak ada hasil ditemukan.";
+                resultList.appendChild(noResultItem);
+            } else {
+                for (var i = 0; i < results.length; i++) {
+                    var resultItem = document.createElement("li");
+                    resultItem.textContent = results[i];
+                    resultList.appendChild(resultItem);
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Pencarian Tim NHL</h1>
+    <input type="text" id="searchInput" placeholder="Cari tim...">
+    <button type="button" onclick="searchTeams()">Cari</button>
+    
+    <h2>Hasil Pencarian</h2>
+    <ul id="resultList"></ul>
+</body>
+</html>
 
