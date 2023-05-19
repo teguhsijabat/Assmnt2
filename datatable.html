@@ -1,50 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>NHL Teams Data</title>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
-</head>
-<body>
-    <table id="nhl-teams-table">
-        <thead>
-            <tr>
-                <th>Team Name</th>
-                <th>Abbreviation</th>
-                <th>City</th>
-                <th>Division</th>
-                <th>Conference</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#nhl-teams-table').DataTable({
-                ajax: {
-                    url: "https://statsapi.web.nhl.com/api/v1/teams",
-                    dataSrc: "teams"
-                },
-                columns: [
-                    { data: "name" },
-                    { data: "abbreviation" },
-                    { data: "locationName" },
-                    { data: "division.name" },
-                    { data: "conference.name" }
-                ],
-                searching: false // Menghilangkan fitur searching
-            });
-        });
-    </script>
-</body>
-</html>
-
-<!DOCTYPE html>
-<html>
-<head>
     <title>Pencarian Tim NHL</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -104,4 +60,3 @@
     <ul id="resultList"></ul>
 </body>
 </html>
-
